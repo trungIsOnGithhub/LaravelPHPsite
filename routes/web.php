@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,5 +18,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Testing endpoint
+Route::get('/posts', [PostController::class, 'index']);
