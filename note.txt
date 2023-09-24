@@ -1,0 +1,21 @@
+entry point to all request Laravel application => 'public/index.php'
+
+index.php not has much code -> start point for the rest framework
+
+index.php loads Composer-autoloader, retrieves an instance of Laravel app from bootstrap/app.php
+
+Next, incoming request sent to either the HTTP or Console kernel
+
+HTTP kernel extends Illuminate\...\... , which defines 1 array of 'bootstrappers'
+
+Kernel as black box that represents app. Feed it HTTP requests and it return HTTP responses
+
+most important Kernel bootstrapping actions is loading 'Service Providers'
+
+All service providers for application are configured in config/app.php
+
+First, register() is called on all providers, once providers is registered, boot() method be called.
+
+all framework's components to boot(): database, queue, validation, and routing...
+
+Once [application bootstrapped] and all [service providers registered], Request will to router for dispatching
