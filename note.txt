@@ -19,3 +19,5 @@ First, register() is called on all providers, once providers is registered, boot
 all framework's components to boot(): database, queue, validation, and routing...
 
 Once [application bootstrapped] and all [service providers registered], Request will to router for dispatching
+
+https://serversideup.net/add-api-end-points-laravel/
