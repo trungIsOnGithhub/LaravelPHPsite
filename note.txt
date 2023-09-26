@@ -21,3 +21,11 @@ all framework's components to boot(): database, queue, validation, and routing..
 Once [application bootstrapped] and all [service providers registered], Request will to router for dispatching
 
 https://serversideup.net/add-api-end-points-laravel/
+
+86
+
+Closure is anonymous function - often used as callback methods, parameters in function.
+
+php artisan route:cache ??
+
+Session Expired-419 Page Expired error message in Laravel comes up because somewhere csrf token verification fails
