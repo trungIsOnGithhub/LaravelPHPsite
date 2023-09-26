@@ -14,6 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Route::post('/thought', 'ThoughtController@postOneThought');
 
 Route::get('/home', 'HomeController@index')->name('home');
