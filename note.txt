@@ -28,4 +28,52 @@ Closure is anonymous function - often used as callback methods, parameters in fu
 
 php artisan route:cache ??
 
-Session Expired-419 Page Expired error message in Laravel comes up because somewhere csrf token verification fails
+Session Expired-419 Page Expired in Laravel comes up as somewhere csrf token verification fails
+
+php artisan schema:dump --prune // squash all migration into 1 sql file
+php artisan make:migration create_abc_table
+php artisan migrate:status  |  php artisan migrate:refresh  |   php artisan [migrate | migrate:rollback] (--pretend) (--batch=?)
+
+$table->charset = 'utf8mb4';
+$table->collation = 'utf8mb4_unicode_ci';
+$table->engine = 'InnoDB';
+$table->id();
+$table->string('name');
+$table->string('email');
+$table->timestamps();
+
+Schema::hasTable('users')    // The "users" table exists??
+Schema::hasColumn('users', 'email')   // The "users" table exists and has an "email" column?
+Schema::rename($from, $to)  |   Schema::dropIfExists('users')
+
+# modify columns
+Schema::table('users', function (Blueprint $table) {
+    $table->string('name', 50)->change();
+});
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Query\Expression;
+use Illuminate\Database\Migrations\Migration;
+
+#create table
+Schema:create('though', function(Blueprint $table) {
+    $table->id();
+    $table->string('writer', 255);
+    $table->string('content', 65535);
+    $table->timestamp();
+});
+
+
+// add to Thought model
+protected $fillable = ['writer', 'content'];
+
+Route::post( '/thought', [ThoughtController::class, 'create'] )->name('though.create');  // name de vao blade render voi  route()
+
+<form method="post" action="{{ route('thought.create') }}">
+ @csrf
+ <label>Name</label>
+ <input type="text" name="name" id="name">
+ 
+ <input type="submit" name="send" value="Submit">
+</form
