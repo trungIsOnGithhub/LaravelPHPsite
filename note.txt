@@ -77,3 +77,18 @@ Route::post( '/thought', [ThoughtController::class, 'create'] )->name('though.cr
  
  <input type="submit" name="send" value="Submit">
 </form
+
+public function create(Request $request)
+ {
+ $this->validate($request, [
+ 'name' => 'required',
+ ]);
+ Dog::create($request->all());
+ return to_route('index');
+ }
+
+Using subviews = the @include directive we can include a view within another view
+
+compact() function for subview
+
+/views/partials/
