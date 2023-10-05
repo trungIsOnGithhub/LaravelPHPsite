@@ -10,7 +10,7 @@
     <div class="card-header">Dashboard</div>
 
     <section class="container justify-content-center">
-        <h5>qhudalw87319</h5>
+        <h5>{{$msg}}</h5>
         <form action="/thought" method="POST">
             <label for="thought">What's on your mind?</label>
             <textarea id="thought" name="thought" rows="5" cols="10"></textarea>
@@ -18,6 +18,32 @@
             <input type="text" id="name" name="name">
             <button type="submit">Submit</button>
         </form>
+        <table class="table table-bordered">
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Details</th>
+                <th width="280px">Action</th>
+            </tr>
+            @foreach ($products as $product)
+            <tr>
+                <td>{{ ++$i }}</td>
+                <td>{{ $product->name }}</td>
+                <td>{{ $product->detail }}</td>
+                <td>
+                    <form action="{{ route('thought.destroy',$product->id) }}" method="POST">
+        
+                        <a class="btn btn-primary" href="{{ route('thought.edit',$product->id) }}">Edit</a>
+    
+                        @csrf
+                        @method('DELETE')
+        
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </table>
     </section>
 
     <section class="container  justify-content-center">
