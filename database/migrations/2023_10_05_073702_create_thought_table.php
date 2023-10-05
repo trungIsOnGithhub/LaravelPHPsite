@@ -15,9 +15,6 @@ class CreateThoughtTable extends Migration
     {
         Schema::create('thought', function (Blueprint $table) {
             // for MySQL DB Only
-            if( !Schema::hasTable('thought') ) {
-                Schema::drop('thought');
-            }
 
             $table->charset = 'utf8mb4';
             $table->collation = 'utf8mb4_unicode_ci';
@@ -25,7 +22,7 @@ class CreateThoughtTable extends Migration
 
             $table->bigIncrements('id');
             $table->string('name', 255);
-            $table->string('content', 65535);
+            $table->string('content', 2550);
             $table->timestamps();
         });
     }
