@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utils\ThoughtForm;
 use App\Thought;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,13 @@ class ThoughtController extends Controller
      */
     public function index()
     {
+        error_log("VUIUIUIVI");
         $thoughts = Thought::latest()->paginate(6);
 
         return view('home', [
             'msg' => 'list',
             'thoughts' => $thoughts,
+            'can_write_thought' => ThoughtForm::isEnabledNow(),
         ]);
     }
 
@@ -52,6 +55,7 @@ class ThoughtController extends Controller
         return view('home', [
             'msg' => 'created',
             'thoughts' => $thoughts,
+            'can_write_thought' => ThoughtForm::isEnabledNow(),
         ]);
     }
 
@@ -98,6 +102,7 @@ class ThoughtController extends Controller
         return view('home', [
             'msg' => 'updated',
             'thoughts' => $thoughts,
+            'can_write_thought' => ThoughtForm::isEnabledNow(),
         ]);
     }
 
@@ -116,6 +121,7 @@ class ThoughtController extends Controller
         return view('home', [
             'msg' => 'destroyed',
             'thoughts' => $thoughts,
+            'can_write_thought' => ThoughtForm::isEnabledNow(),
         ]);
     }
 }
