@@ -14,6 +14,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/thought', 'ThoughtController@postOneThought');
+Route::resource('thought', 'ThoughtController');
 
 Route::get('/home', 'HomeController@index')->name('home');
