@@ -11,13 +11,20 @@
 
     <section class="container justify-content-center">
         <h5>{{$msg}}</h5>
-        <form action="/thought" method="POST">
-            <label for="thought">What's on your mind?</label>
-            <textarea id="thought" name="thought" rows="5" cols="10"></textarea>
-            <label for="name">And who you are?(Optional):</label>
-            <input type="text" id="name" name="name">
-            <button type="submit">Submit</button>
-        </form>
+        @if( $can_write_thought )
+            <form action="{{ route('thought.store') }}" method="POST">
+                <label for="content">What's on your mind?</label>
+                <textarea id="thought" name="content" rows="5" cols="10"></textarea>
+                <label for="name">And who you are?(Optional):</label>
+                <input type="text" id="name" name="name">
+                @csrf
+                <button type="submit">Submit</button>
+            </form>
+        @endif
+        @php
+            $i = 1;
+            echo "Vui Ve Qua Di";
+        @endphp
         <table class="table table-bordered">
             <tr>
                 <th>No</th>
@@ -25,15 +32,15 @@
                 <th>Details</th>
                 <th width="280px">Action</th>
             </tr>
-            @foreach ($products as $product)
+            @foreach($thoughts as $thought)
             <tr>
                 <td>{{ ++$i }}</td>
-                <td>{{ $product->name }}</td>
-                <td>{{ $product->detail }}</td>
+                <td>{{ $thought->name }}</td>
+                <td>{{ $thought->content }}</td>
                 <td>
-                    <form action="{{ route('thought.destroy',$product->id) }}" method="POST">
+                    <form action="{{ route('thought.destroy',$thought->id) }}" method="POST">
         
-                        <a class="btn btn-primary" href="{{ route('thought.edit',$product->id) }}">Edit</a>
+                        <a class="btn btn-primary" href="{{ route('thought.edit',$thought->id) }}">Edit</a>
     
                         @csrf
                         @method('DELETE')
@@ -46,7 +53,7 @@
         </table>
     </section>
 
-    <section class="container  justify-content-center">
+    <!-- <section class="container  justify-content-center">
         <h4>Photo Gallery</h4>
         <div class="row">
             <div class="col-xs-12 col-md-4">
@@ -70,6 +77,6 @@
                 <img src="meotom.jpeg" alt="Meo Tom" width="200" height="300">
             </div>
         </div>
-    </section>
+    </section> -->
 <body>
 </html>
